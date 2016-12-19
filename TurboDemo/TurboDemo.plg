@@ -1,0 +1,55 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: TurboDemo - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"..\temp\TurboDemo\Release/TurboDemo.res" /d "NDEBUG" /d "_AFXDLL" "i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDemo\TurboDemo.rc"" 
+Creating temporary file "G:\TEMP\RSP118.tmp" with contents
+[
+/nologo /MD /W3 /GX /Zi /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"..\temp\TurboDemo\Release/" /Fp"..\temp\TurboDemo\Release/TurboDemo.pch" /Yu"stdafx.h" /Fo"..\temp\TurboDemo\Release/" /Fd"..\temp\TurboDemo\Release/" /FD /c 
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDemo\MyTreeListCtrl.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDemo\TurboDemo.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDemo\TurboDemoDlg.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDemo\TurboDragDlg.cpp"
+]
+Creating command line "cl.exe @G:\TEMP\RSP118.tmp" 
+Creating temporary file "G:\TEMP\RSP119.tmp" with contents
+[
+/nologo /MD /W3 /GX /Zi /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"..\temp\TurboDemo\Release/" /Fp"..\temp\TurboDemo\Release/TurboDemo.pch" /Yc"stdafx.h" /Fo"..\temp\TurboDemo\Release/" /Fd"..\temp\TurboDemo\Release/" /FD /c 
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDemo\StdAfx.cpp"
+]
+Creating command line "cl.exe @G:\TEMP\RSP119.tmp" 
+Creating temporary file "G:\TEMP\RSP11A.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"..\bin\Release/TurboDemo.pdb" /debug /machine:I386 /out:"..\bin\Release/TurboDemo.exe" 
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDemo\Release\MyTreeListCtrl.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDemo\Release\StdAfx.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDemo\Release\TurboDemo.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDemo\Release\TurboDemoDlg.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDemo\Release\TurboDragDlg.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDemo\Release\TurboDemo.res
+]
+Creating command line "link.exe @G:\TEMP\RSP11A.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Automatically linking with TurboDLL.lib ( Release Version )
+Compiling...
+MyTreeListCtrl.cpp
+TurboDemo.cpp
+TurboDemoDlg.cpp
+TurboDragDlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+TurboDemo.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: TurboDLL - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"..\temp\TurboDLL\Release/TurboDLL.res" /d "NDEBUG" /d "_AFXDLL" "i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TurboDLL.rc"" 
+Creating temporary file "G:\TEMP\RSP10D.tmp" with contents
+[
+/nologo /MD /W3 /GX /Zi /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_AFXEXT" /FR"..\temp\TurboDLL\Release/" /Fp"..\temp\TurboDLL\Release/TurboDLL.pch" /Yu"stdafx.h" /Fo"..\temp\TurboDLL\Release/" /Fd"..\temp\TurboDLL\Release/" /FD /c 
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TLCDragWnd.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TLCDropWnd.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TLHDragWnd.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TLHDropWnd.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListColumnInfo.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListComboCtrl.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListCtrl.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListDC.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListEditCtrl.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListHeaderCtrl.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListItem.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListStaticCtrl.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TreeListTipCtrl.cpp"
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\TurboDLL.cpp"
+]
+Creating command line "cl.exe @G:\TEMP\RSP10D.tmp" 
+Creating temporary file "G:\TEMP\RSP10E.tmp" with contents
+[
+/nologo /MD /W3 /GX /Zi /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_AFXEXT" /FR"..\temp\TurboDLL\Release/" /Fp"..\temp\TurboDLL\Release/TurboDLL.pch" /Yc"stdafx.h" /Fo"..\temp\TurboDLL\Release/" /Fd"..\temp\TurboDLL\Release/" /FD /c 
+"i:\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\TurboDLL\StdAfx.cpp"
+]
+Creating command line "cl.exe @G:\TEMP\RSP10E.tmp" 
+Creating temporary file "G:\TEMP\RSP10F.tmp" with contents
+[
+/nologo /subsystem:windows /dll /incremental:yes /pdb:"..\lib\release/TurboDLL.pdb" /debug /machine:I386 /out:"..\bin\release/TurboDLL.dll" /implib:"..\lib\release/TurboDLL.lib" 
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\StdAfx.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TLCDragWnd.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TLCDropWnd.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TLHDragWnd.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TLHDropWnd.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListColumnInfo.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListComboCtrl.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListCtrl.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListDC.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListEditCtrl.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListHeaderCtrl.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListItem.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListStaticCtrl.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TreeListTipCtrl.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TurboDLL.obj
+\BORDEL\CONNERIES\Truc\UI\Tree\TreeListCtrlTigerX_modded\temp\TurboDLL\Release\TurboDLL.res
+]
+Creating command line "link.exe @G:\TEMP\RSP10F.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+TLCDragWnd.cpp
+TLCDropWnd.cpp
+TLHDragWnd.cpp
+TLHDropWnd.cpp
+TreeListColumnInfo.cpp
+TreeListComboCtrl.cpp
+TreeListCtrl.cpp
+TreeListDC.cpp
+TreeListEditCtrl.cpp
+TreeListHeaderCtrl.cpp
+TreeListItem.cpp
+TreeListStaticCtrl.cpp
+TreeListTipCtrl.cpp
+TurboDLL.cpp
+Generating Code...
+Linking...
+   Creating library ..\lib\release/TurboDLL.lib and object ..\lib\release/TurboDLL.exp
+
+
+
+<h3>Results</h3>
+TurboDLL.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
