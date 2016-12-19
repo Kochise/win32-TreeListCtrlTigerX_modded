@@ -16,12 +16,12 @@ You need the following to get this program working :
 
 This code is from 'TigerX' and can be found here :
 
-https://www.codeproject.com/Articles/2913/A-Tree-List-Control
+https://www.codeproject.com/Articles/2913/A-Tree-List-Control<br>
 
 I modified and improved it a bit :
 
-https://www.codeproject.com/Messages/1342351/Done-it-done-that.aspx
-https://www.codeproject.com/Messages/2029232/How-to-include-TurboDLL-staticaly-into-a-project-m.aspx
+https://www.codeproject.com/Messages/1342351/Done-it-done-that.aspx<br>
+https://www.codeproject.com/Messages/2029232/How-to-include-TurboDLL-staticaly-into-a-project-m.aspx<br>
 
 * Some infos
 
