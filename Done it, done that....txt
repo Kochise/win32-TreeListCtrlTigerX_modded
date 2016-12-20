@@ -1,0 +1,183 @@
+"OK guys, hands in the air, gimme the money !"
+
+With the nice but inconsistent starting, here I'm introducing myself : Kochise, to serve you. Well, enough silly bablings, I just wanted to tell you all that I finally got solved many problems found in the original TigerX's component. I also added all suggestions from all the previous posts, and tweaked things tightly. Here is what you get :
+
+- The demo application now shows Delete/Insert/Expand time
+- You can refeed the tree to see the time spent in the process
+- The resizing now works like expected
+- The component still flickers (not managed to avoid this with a double buffer)
+- The runtime delay got in the release mode is (almost) definitively solved
+- Added auto-blocking refresh when inserting/deleting a lots of items
+- Configured the release mode to create debug files
+- ...
+
+Now before you proceed to download the new version, let me explain how I solved the ENORMOUS delay everyone experienced in release mode. For this I had to get a code profiler to spot where the CPU was spending, sorry, wasting time. I first checked CodeProject's availability of such a tool, and found one :
+
+http://www.codeproject.com/cpp/profiler.asp
+
+This was exactly what I needed, showing several informations, time spent in each function, etc... But after having downloaded the project binaries, get a look at the source code and the example program, it appeared I had to instrument the whole source code before getting it to outpot profiling logs. It was no worth wasting my time for this, as I had then to remove all profiler dependencies from the source code to release it afterward.
+
+So I took another choice. In my previous jobs, in embedded, I worked with hardware real-time code profilers such the Lauterbach :
+
+http://www.lauterbach.com/
+
+These pieces of excellence are just expensive units, but that perform exactly what we needs, and able to display to the coder where the code is currently dead locking, what is the memory consumption, etc... All of this in a in-situ prototype ! With flashed ROM ! How convinient ! Thus I got a look on the net to find something similar for Windows, and found one that may fits my needs :
+
+http://www.glowcode.com/summary.htm
+
+GlowCode seemed to perform exactly what I wanted, so I registered a free evaluation key here :
+
+http://www.glowcode.com/eval.htm
+
+Then I downloaded it there :
+
+http://www.glowcode.com/download/gcSetup.exe
+
+I installed GlowCode 5.1, then registered it with the evaluation key I just received 5 minutes after my application. I started with the tutorial which prooved me I needed this tool so badly :)
+
+End of story...
+
+
+
+
+
+
+
+
+Nahhhhh, pulling your leg. Well, I read the help documentation, I found out how to 'preload' a DLL, hook its functions, then attach the whole things to the current process and profile the whole stuff. Basicaly, here are the steps to configure then perform the profiling :
+
+- Put debug informations into your 'TurboDemo' and 'TurboDll' Release build
+
+* Open each project
+* Menu Project\Settings (Alt+F7)
+* Select the Release mode !!!
+* Select the C/C++ tab
+*   Check 'Generate browse info'
+*   Select 'Debug info:' to 'Program Database'
+* Select the Link tab
+*   Check 'Generate debug info'
+*   Check 'Link incrementally'
+
+But now, just download the new version and extract it somewhere :
+
+http://david.koch.9online.fr/TreeListCtrlTigerX_modded.zip (1322 KiB)
+
+NOTE : this version don't create 1440 items anymore (20*6*12), but 144000 instead (200*60*12). Longer loops helps the code profiler to show better where the program is stuck !
+
+Once it is done, you should have all project files set up and all binary files ready for a code profiling. Just run GlowCode and follow the steps :
+
+- Start gcLoader
+- Select the release\TurboDemo.exe program
+
+The TurboDemo program will starts before the gcLoader if completely opened, but we don't care right now. Here are the following steps to configure GlowCode to load the TurboDLL file :
+
+- Menu Hooks\Preload...
+- Browse for the Release DLL file (must be already in the right folder)
+- Menu Hooks\Define...
+- Add a new hook, click on 'Add'
+- In 'Module', search the 'TurboDLL.dll' file (this is the Release file)
+- Click OK, the output should show you something like :
+
+TurboDemo.exe matches *.exe
+38 functions hooked, 0 lines hooked
+TurboDLL.dll matches TurboDLL.dll
+411 functions hooked, 0 lines hooked
+449 total functions hooked, 0 total lines hooked
+
+- Click OK
+
+GlowCode is now almost ready to perform a successfull profiling, we just have to select some few options :
+
+- Select the Report tab
+- Click the big Options button
+- At the bottom right of the dialog box, check the three boxes (Report / Profile / Trace)
+- Click OK
+
+Now we can go, in few seconds, but first start the profiling :
+
+- Push the big Run button
+
+Now select the TurboDemo program waiting in the background, and click the 'Recreate tree' button, and observe what is going on in the GlowCode window... As you may have seen, the 'Total visit time' as run the pretty same amount of time shown in the bottom of the TurboDemo dialog box (delete + insert + expand time). In the GlowCode window, open the 'Modules' line, then the 'TurboDLL.dll' line. Sort the 'Total visit time' and see what function took the longest time to perfom...
+
+In the archive, I put some screenshots of my profiling session, let me explain the steps of my analysis :
+
+- Profile01.png : This shows the DEBUG build, which perfom quite well for the insertion of 144000 items.
+
+- Profile02.png : This is the RELEASE build, and you can see it took more than 34 seconds to perfom. The program was stuck almost 21 seconds in the CTreeListItem constructor, and 8 seconds in the InsertItemNext function. That's where we should have a look !
+
+To check which call was taking so much time in the InsertItemNext function, I just created a little dummy function in which I moved the 'new' operator, so that the code profiler may hang on it if it was its fault !
+
+- Profile03.png : This snap shows that the program spend all the previous InsertItemNext time into the dummy CreateNewItem function. That's it, it's the 'new' operator which slow down everything. Now check what's inside the CTreeListItem constructor !
+
+-Profile04.png : To be sure, in the Report tab, I made a right click on the faulty CTreeListItem constructor line, then clicked 'Goto First similar item in Profiler'. It opened the Profile tab, and located me where it was stuck. Nothe the toal amount of time spent in the CTreeListItem constructor from the dummy CreateNewItem function !
+
+So I opened the TurboDLL project into Visual, located the CTreeListItem constructor inside TreeListItem.cpp :
+
+<pre>CTreeListItem::CTreeListItem( int nSubItem ) :
+  m_pParent( NULL ),
+  m_pChild( NULL ),
+  m_pPrev( NULL ),
+  m_pNext( NULL ),
+  m_dwState( TLIS_SHOWCHECKBOX | TLIS_SHOWLOCKBOX | TLIS_CHECKED_NULL | TLIS_LOCKED_NULL ),
+  m_dwData( 0 ),
+//  m_pImageList( NULL ),
+  m_nLevel( 0 ),
+  m_nChild( 1 ),
+  m_nVisibleChild( 1 )
+{
+  for( int iSubItem = 0; iSubItem < nSubItem; iSubItem++ )
+  {
+    CString* pSubItem = new CString;
+    m_arSubItems.Add( pSubItem );
+  }
+}</pre>
+
+It looked strange to me, so I took a look at the destructor just below :
+
+<pre>CTreeListItem::~CTreeListItem()
+{
+  while( m_arSubItems.GetSize() > 0 )
+  {
+    CString* pSubItem;
+    pSubItem = (CString*)m_arSubItems[m_arSubItems.GetUpperBound()];
+    m_arSubItems.RemoveAt( m_arSubItems.GetUpperBound() );
+    delete pSubItem;
+  }
+}</pre>
+
+It was pretty weird, but strictly logical in a point of view of code. Then how the hell the release build was wasting so much time in a so trivial function ? So I changed things a 'little'. In the header file, I changed the 'CPtrArray' member for a 'CStringArray' one, and changed the constructor and the destructor for the following code :
+
+<pre>CTreeListItem::CTreeListItem( int nSubItem ) :
+  m_pParent( NULL ),
+  m_pChild( NULL ),
+  m_pPrev( NULL ),
+  m_pNext( NULL ),
+  m_dwState( TLIS_SHOWCHECKBOX | TLIS_SHOWLOCKBOX | TLIS_CHECKED_NULL | TLIS_LOCKED_NULL ),
+  m_dwData( 0 ),
+//  m_pImageList( NULL ),
+  m_nLevel( 0 ),
+  m_nChild( 1 ),
+  m_nVisibleChild( 1 )
+{
+  m_arSubItems.SetSize( nSubItem );
+}
+
+CTreeListItem::~CTreeListItem()
+{
+}</pre>
+
+Obvious, isn't it ? There was also two more changes in the code to reflect the change from a CString* to a CString reference, and all compiled successfully ! Then I tested the result...
+
+No mistake, no memory leaks. When opening the TurboDemo, all ran fine. I then clicked the 'Recreate tree', and instead to spend 21 seconds, it only asked 8 seconds to perform. I clicked a second time, and it asked less than a second. So the change was successful, but led in a drawback -> the CStringArray must cache its memory on the heap a first time before being efficient.
+
+Anyway, the GlowCode code profiler allowed me to spot very fast where the problem was. So it works well on purpose too :)
+
+Sadly the product costs 300$ per user, which can be quite a show stopper for many of us. The interface is also quite confusing, with many 640x480 screen compliant dialog boxes hardly readable. The 'logic' of the UI is also quite a problem (many sub dialog boxes to open and configure before getting things to work). I would have loved a Drag'n Drop approach...
+
+Beside these points, I finally got the TigerX's component to work well :) So have a nice day !
+
+Kochise
+
+PS : Note that the auto-blocking refresh system works by blocking any refresh as long as a process is currently making some changes in the component. When no more changes are performed for 40 ms, the component automatically refresh itself. So you don't have to care anymore with 'Refresh' of 'SetRedraw stuff :) Just do your work, the component will block itself as long as you have something to do inside...
+
+Also note that I made all changes between my 'famous' MODIF_KOCH tags, and left the previous code in comment, so that you can track back my modifications. I would be glad you post your changes here as a follow-up, so that we won't have to surf the web to find updates !

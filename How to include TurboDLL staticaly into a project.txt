@@ -1,0 +1,50 @@
+If you don't want to link your project with TurboDLL.dll but want to create a standalone executable file, here's the steps to follow :
+
+1- Include the following Bitmaps in your ressource tree :
+
+IDB_TREELIST_BITMAP (res\BM_BKGND.BMP)
+IDB_TREELIST_CHECK (res\bm_checkbox.bmp)
+IDB_TREELIST_DISABLE (res\bm_bkgnd2.bmp)
+IDB_TREELIST_HEADER (res\bm_def_head.bmp)
+IDB_TREELIST_LOCK (res\bm_lockbox.bmp)
+IDB_TREELIST_SORT (res\bm_def_sort.bmp)
+IDB_TREELIST_TREE (res\bm_def_tree.bmp)
+
+2- Include the following Cursors in your ressource tree :
+
+IDC_CURSOR1 (res\cursor1.cur)
+IDC_CURSOR_BUTTON (res\cur_button.cur)
+IDC_CURSOR_CHECK (res\cur_checkbox.cur)
+IDC_CURSOR_CROSS (res\cur_cross.cur)
+IDC_CURSOR_DROP (res\CUR_DROP.CUR)
+IDC_CURSOR_HORZ (res\CUR_HORZ.CUR)
+IDC_CURSOR_LOCK (res\cur_lockbox.cur)
+IDC_CURSOR_SIZE (res\CUR_SIZE.CUR)
+IDC_CURSOR_SPLIT (res\cur_split.cur)
+IDC_CURSOR_STOP (res\CUR_STOP.CUR)
+IDC_CURSOR_VERT (res\CUR_VERT.CUR)
+
+3- Add this to "stdafx.cpp"
+
+<pre>#include "./TreeListResource.h"
+
+CTreeListResource::CTreeListResource()
+{
+}
+
+CTreeListResource::~CTreeListResource()
+{
+}</pre>
+
+4- Add these lines to "stdafx.h" to turns the code into a non DLL/exported one :
+
+<pre>#undef AFX_EXT_CLASS
+#define AFX_EXT_CLASS
+
+#include "./TurboDLL.h"</pre>
+
+5- In "TurboDLL.h" uncomment the following line to allow the use of CArray :
+
+<pre>#include <<Afxtempl.h>></pre>
+
+And you're done !
