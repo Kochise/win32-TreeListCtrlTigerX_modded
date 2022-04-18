@@ -2,6 +2,8 @@
 
 Windows MFC hybrid control mixing a tree and a list
 
+![TurboDemo](https://raw.githubusercontent.com/Kochise/win32-TreeListCtrlTigerX_modded/master/bin/release/TurboDemo.png)
+
 * Hardware and software needed
 
 You need the following to get this program working :
